@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>موقعي الشخصي | ElCaptin</title>
+  <style>
+    /* ===== إعدادات عامة ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Cairo", sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      transition: 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+    :root {
+      --bg: #ffffff;
+      --text: #222;
+      --primary: #0066ff;
+      --card: #f5f5f5;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #f1f1f1;
+      --card: #1e1e1e;
+    }
+
+    /* ===== الخلفية التقنية ===== */
+    #tech-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background: #0a0a0a;
+    }
+
+    /* ===== Header ===== */
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: var(--bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 10%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    header h1 { color: var(--primary); font-size: 24px; }
+    nav a {
+      margin: 0 10px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    nav a:hover { color: var(--primary); }
+    .dark-mode-toggle {
+      cursor: pointer;
+      font-size: 18px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+
+    /* ===== Hero / من أنا ===== */
+    section {
+      padding: 100px 10%;
+      min-height: 100vh;
+    }
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .hero-text { flex: 1; min-width: 250px; }
+    .hero-text h2 { font-size: 2.2em; margin-bottom: 10px; }
+    .hero-text p { font-size: 1.1em; line-height: 1.6; margin-bottom: 20px; }
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover { opacity: 0.8; }
+    .hero img { width: 250px; border-radius: 50%; margin-top: 20px; }
+
+    /* ===== قسم الأعمال ===== */
+    .portfolio-section {
+      padding: 100px 10%;
+      background: var(--card);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    .portfolio-section h2 {
+      text-align: center;
+      font-size: 2.2em;
+      color: var(--primary);
+      margin-bottom: 50px;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .project-card {
+      background: var(--bg);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .project-card img { width: 100%; height: 180px; object-fit: cover; }
+    .project-info {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .project-info h3 { color: var(--primary); margin-bottom: 10px; }
+    .project-info p { font-size: 0.95em; margin-bottom: 15px; color: var(--text); }
+    .project-info .btn { align-self: flex-start; padding: 8px 18px; font-size: 0.95em; }
+
+    /* ===== قسم التواصل ===== */
+    .contact {
+      background: var(--card);
+      padding: 50px 10%;
+      border-radius: 10px;
+    }
+    .contact h2 { text-align: center; margin-bottom: 30px; }
+    form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, textarea {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 1em;
+    }
+    button {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { opacity: 0.8; }
+
+    /* ===== Footer ===== */
+    footer {
+      background: var(--bg);
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      border-top: 1px solid #ccc;
+    }
+    .social { margin-bottom: 10px; }
+    .social a {
+      margin: 0 5px;
+      color: var(--primary);
+      font-size: 1.4em;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; text-align: center; }
+      .hero img { margin-top: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- خلفية تقنية متحركة -->
+  <canvas id="tech-bg"></canvas>
+
+  <!-- Header -->
+  <header>
+    <h1>ElCaptin</h1>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#about">عنّي</a>
+      <a href="#portfolio">الأعمال</a>
+      <a href="#contact">تواصل</a>
+    </nav>
+    <button class="dark-mode-toggle">🌙</button>
+  </header>
+
+  <!-- Hero / من أنا -->
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h2>مرحبًا، أنا <span style="color: var(--primary);">أحمد أيمن</span></h2>
+      <p>مطور ويب ومصمم واجهات أمامية متخصص في إنشاء مواقع جميلة وسريعة ومتجاوبة.</p>
+      <a href="#portfolio" class="btn">استعرض أعمالي</a>
+      <a href="cv.pdf" class="btn" download>تحميل السيرة الذاتية</a>
+    </div>
+    <img src="2.jpg" alt="أحمد أيمن">
+  </section>
+
+  <!-- قسم الأعمال -->
+  <section id="portfolio" class="portfolio-section">
+    <h2>أعمالي الأخيرة 💻</h2>
+    <div class="projects">
+      <div class="project-card">
+        <img src="project1.jpg" alt="مشروع 1">
+        <div class="project-info">
+          <h3>موقع تجاري</h3>
+          <p>موقع للتجارة الإلكترونية باستخدام React وNode.js مع تصميم متجاوب.</p>
+          <a href="#" class="btn">عرض المشروع</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="project2.jpg" alt="مشروع 2">
+        <div class="project-info">
+          <h3>تطبيق ويب تفاعلي</h3>
+          <p>تطبيق لإدارة المهام باستخدام HTML, CSS, JavaScript مع واجهة مستخدم أنيقة.</p>
+          <a href="#" class="btn">عرض المشروع</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="project3.jpg" alt="مشروع 3">
+        <div class="project-info">
+          <h3>موقع شخصي</h3>
+          <p>موقع شخصي متجاوب مع Dark Mode وتأثيرات حديثة.</p>
+          <a href="#" class="btn">عرض المشروع</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم التواصل -->
+  <section id="contact" class="contact">
+    <h2>تواصل معي</h2>
+    <form onsubmit="event.preventDefault(); alert('تم إرسال رسالتك بنجاح ✅');">
+      <input type="text" placeholder="الاسم الكامل" required />
+      <input type="email" placeholder="البريد الإلكتروني" required />
+      <textarea rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+      <button type="submit">إرسال</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social">
+      <a href="#" title="Twitter">🐦</a>
+      <a href="#" title="LinkedIn">💼</a>
+      <a href="#" title="GitHub">💻</a>
+    </div>
+    <p>© جميع الحقوق محفوظة - 2025</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // الوضع الليلي
+    const toggle = document.querySelector('.dark-mode-toggle');
+    const body = document.body;
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggle.textContent = '☀️';
+    }
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const dark = body.classList.contains('dark');
+      toggle.textContent = dark ? '☀️' : '🌙';
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    });
+
+    // الخلفية التقنية
+    const canvas = document.getElementById('tech-bg');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const points = [];
+    const numPoints = 80;
+    for (let i = 0; i < numPoints; i++) {
+      points.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < numPoints; i++) {
+        const p1 = points[i];
+        for (let j = i + 1; j < numPoints; j++) {
+          const p2 = points[j];
+          const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+          if (dist < 150) {
+            ctx.strokeStyle = 'rgba(0, 102, 255, 0.2)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+      points.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+        ctx.fillStyle = 'rgba(0, 102, 255, 0.4)';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
